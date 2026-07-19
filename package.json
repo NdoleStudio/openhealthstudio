@@ -14,7 +14,8 @@
     "lint": "eslint .",
     "typecheck": "nuxt typecheck",
     "test": "vitest run",
-    "postinstall": "nuxt prepare"
+    "postinstall": "nuxt prepare",
+    "hosting:serve": "npm run generate && firebase emulators:start --only hosting --project openhealthstudio"
   },
   "dependencies": {
     "nuxt": "4.5.0",
@@ -27,6 +28,7 @@
     "@types/node": "26.1.1",
     "@vue/test-utils": "2.4.11",
     "eslint": "10.7.0",
+    "firebase-tools": "15.24.0",
     "happy-dom": "20.11.0",
     "typescript": "5.9.3",
     "vitest": "4.1.10",
