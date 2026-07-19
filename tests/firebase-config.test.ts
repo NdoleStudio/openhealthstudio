@@ -44,6 +44,8 @@ describe('Firebase Hosting configuration', () => {
   it('sets security and cache headers', () => {
     const config = readJson<FirebaseConfig>('firebase.json')
     const allHeaders = config.hosting.headers.flatMap(rule => rule.headers)
+    const generalHeaderRule = config.hosting.headers.find(rule => rule.source === '**')
+    const nuxtHeaderRule = config.hosting.headers.find(rule => rule.source === '/_nuxt/**')
 
     expect(allHeaders).toContainEqual({
       key: 'X-Content-Type-Options',
@@ -57,23 +59,20 @@ describe('Firebase Hosting configuration', () => {
       key: 'X-Frame-Options',
       value: 'DENY',
     })
-    expect(config.hosting.headers).toContainEqual(expect.objectContaining({
-      source: '/index.html',
-      headers: expect.arrayContaining([
-        {
-          key: 'Cache-Control',
-          value: 'public, max-age=0, must-revalidate',
-        },
-      ]),
-    }))
-    expect(config.hosting.headers).toContainEqual(expect.objectContaining({
-      source: '/_nuxt/**',
-      headers: expect.arrayContaining([
-        {
-          key: 'Cache-Control',
-          value: 'public, max-age=31536000, immutable',
-        },
-      ]),
-    }))
+    expect(generalHeaderRule?.headers).toContainEqual({
+      key: 'Cache-Control',
+      value: 'public, max-age=0, must-revalidate',
+    })
+    expect(config.hosting.headers.some(rule =>
+      rule.source === '/index.html'
+      && rule.headers.some(header => header.key === 'Cache-Control'),
+    )).toBe(false)
+    expect(nuxtHeaderRule?.headers).toContainEqual({
+      key: 'Cache-Control',
+      value: 'public, max-age=31536000, immutable',
+    })
+    expect(config.hosting.headers.indexOf(generalHeaderRule!)).toBeLessThan(
+      config.hosting.headers.indexOf(nuxtHeaderRule!),
+    )
   })
 })
