@@ -1,0 +1,35 @@
+{
+  "name": "openhealthstudio",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "packageManager": "npm@11.13.0",
+  "engines": {
+    "node": ">=24.11.0 <25"
+  },
+  "scripts": {
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "lint": "eslint .",
+    "typecheck": "nuxt typecheck",
+    "test": "vitest run",
+    "postinstall": "nuxt prepare"
+  },
+  "dependencies": {
+    "nuxt": "4.5.0",
+    "vue": "3.5.40",
+    "vue-router": "4.6.4"
+  },
+  "devDependencies": {
+    "@nuxt/eslint": "1.16.0",
+    "@nuxt/test-utils": "4.0.3",
+    "@types/node": "26.1.1",
+    "@vue/test-utils": "2.4.11",
+    "eslint": "10.7.0",
+    "happy-dom": "20.11.0",
+    "typescript": "5.9.3",
+    "vitest": "4.1.10",
+    "vue-tsc": "3.3.7"
+  }
+}
