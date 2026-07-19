@@ -1,5 +1,6 @@
 import { defineNuxtModule } from 'nuxt/kit'
 
+// Work around vue-router/volar/sfc-route-blocks being injected by upstream tooling and breaking `nuxt typecheck`; remove once that plugin is no longer added.
 const stripRouterVolarPlugin = defineNuxtModule({
   meta: { name: 'strip-router-volar-plugin' },
   setup(_options, nuxt) {
