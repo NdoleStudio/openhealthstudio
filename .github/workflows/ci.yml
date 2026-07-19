@@ -42,7 +42,7 @@ jobs:
         run: npm run generate
 
       - name: Upload verified application
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v7
         with:
           name: static-site
           path: .output/public
