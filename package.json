@@ -27,7 +27,7 @@
     "@nuxt/test-utils": "4.0.3",
     "@types/node": "26.1.1",
     "@vue/test-utils": "2.4.11",
-    "eslint": "10.7.0",
+    "eslint": "10.8.0",
     "firebase-tools": "15.24.0",
     "happy-dom": "20.11.0",
     "typescript": "5.9.3",
